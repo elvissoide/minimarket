@@ -1,3 +1,4 @@
+package vistas;
 import javax.swing.*;
 
 public class VistaLogin {
@@ -6,5 +7,5 @@ public class VistaLogin {
     private JTextField textField2;
     private JButton ingresarButton;
     private JComboBox comboBox1;
-    private JLabel imagen;
+    private JLabel imagenBuho;
 }
