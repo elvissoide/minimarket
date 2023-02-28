@@ -1,12 +1,10 @@
-package vistas;
-
 import javax.swing.*;
 
 public class VistaLogin {
-    private JComboBox modocomboBox;
-    private JTextField usuarioTextField;
-    private JPasswordField passwordField;
+    private JPanel panel1;
+    private JTextField textField1;
+    private JTextField textField2;
     private JButton ingresarButton;
-    private JButton salirButton;
-    private JPanel panelLogin;
+    private JComboBox comboBox1;
+    private JLabel imagen;
 }
