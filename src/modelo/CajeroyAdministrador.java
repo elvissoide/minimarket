@@ -1,30 +1,51 @@
 package modelo;
 
 public class CajeroyAdministrador {
-    private String id;
+    private int id;
     private String nombre;
     private String apellido;
+    private String direccion;
+    private String correo;
+    private String telefono;
     private String usuario;
     private String contrasena;
-    private String correo;
 
     public CajeroyAdministrador(){
     }
 
-    public CajeroyAdministrador(String id, String nombre, String apellido, String usuario, String contrasena, String correo) {
+    public CajeroyAdministrador(int id, String nombre, String apellido, String direccion, String correo,
+                                String telefono, String usuario, String contrasena) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.telefono = telefono;
         this.usuario = usuario;
         this.contrasena = contrasena;
-        this.correo = correo;
     }
 
-    public String getId() {
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

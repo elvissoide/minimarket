@@ -17,12 +17,7 @@ public class VistaLogin extends JFrame{
         setTitle("Ingreso de credenciales");
         setLocation(600,250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ingresarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
     }
 
 }

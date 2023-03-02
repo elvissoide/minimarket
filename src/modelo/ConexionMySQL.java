@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 public class ConexionMySQL {
     Connection conexion;
     public Connection crearConexion(){
-        String url = "jdbc:mysql://localhost:3306/minimarket";
+        String url = "jdbc:mysql://localhost:3306/minimarketearf";
         String usuario = "root";
         String contrasena = "Gatito1011";
         try {
