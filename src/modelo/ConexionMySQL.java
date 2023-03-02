@@ -9,7 +9,7 @@ public class ConexionMySQL {
     public Connection crearConexion(){
         String url = "jdbc:mysql://localhost:3306/minimarketearf";
         String usuario = "root";
-        String contrasena = "Gatito1011";
+        String contrasena = "franklin123";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(url, usuario, contrasena);

@@ -2,20 +2,33 @@ package vistas;
 
 import javax.swing.*;
 
-public class VistaCrudProductosAdmi {
-    private JTextField textField1;
-    private JTextField textField2;
-    private JTextField textField3;
-    private JTextField textField4;
-    private JTextField textField5;
-    private JTextField textField6;
-    private JRadioButton SIRadioButton;
-    private JRadioButton NORadioButton;
-    private JTable informacionProductos;
-    private JButton IngresarButton;
-    private JButton actualizarButton;
-    private JButton eliminarButton;
-    private JButton guardarButton;
-    private JButton seleccionarButton;
+public class VistaCrudProductosAdmi extends JFrame {
+    private JTextField idtextField_GP;
+    private JTextField descripciontextField_GP;
+    private JTextField stocktextField_GP;
+    private JTextField valventatextField_GP;
+    private JTextField proveedortextFiedl_GP;
+    public JRadioButton SIRadioButton;
+    public JRadioButton NORadioButton;
+    public JTable informacionProductos;
+    public JButton listarButton_GP;
+    public JButton actualizarButton;
+    public JButton eliminarButton;
+    public JButton guardarButton;
+    public JButton seleccionarButton;
+    private JPanel Tabla;
+    private JTextField nombretextField_GP;
+    private JPanel Productos;
+    private JPanel Opciones;
+    private JButton buscarButton;
+    private JPanel panelGestionProductos;
 
+    public VistaCrudProductosAdmi()
+    {
+        setContentPane(panelGestionProductos);
+        pack();
+        setTitle("Gestion de Productos");
+        setLocation(600,250);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
 }
