@@ -40,6 +40,10 @@ public class CtrGestionCajeros implements ActionListener {
             System.out.println("Boton buscar presionado");
             ctrbuscar();
         }
+        else if (e.getSource() == vcrudcajero.eliminarButton) {
+            System.out.println("Boton eliminar presionado");
+            ctreliminar();
+        }
     }
 
     public void ctrlistar(){
@@ -74,5 +78,17 @@ public class CtrGestionCajeros implements ActionListener {
         objeto[7] = cya.getContrasena();
         modelo.addRow(objeto);
         System.out.println("Ejecucion exitosa");
+    }
+    public void ctreliminar(){
+        int fila = vcrudcajero.cajerostable.getSelectedRow();
+        if (fila == -1){
+            JOptionPane.showMessageDialog(null,
+                    "Por favor, seleccione una fila.");
+        } else {
+            int id = (int) vcrudcajero.cajerostable.getValueAt(fila,0);
+            ccrud.eliminar(id);
+            JOptionPane.showMessageDialog(null,
+                    "Usuario con id " + id + "eliminado exitosamente");
+        }
     }
 }

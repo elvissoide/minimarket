@@ -73,5 +73,18 @@ public class CajeroCrud {
         }
         return cya;
     }
+    public void eliminar (int id){
+        sql = "DELETE FROM cajeros WHERE idCaj=" + id;
+        try {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            con.close();
+            ps.close();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "ERROR en la conexion con la base de datos");
+            e.printStackTrace();
+        }
+    }
 
 }
