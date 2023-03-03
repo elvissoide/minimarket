@@ -30,6 +30,8 @@ public class CtrGestionCajeros implements ActionListener {
         this.vcrudcajero.cajerostable.setModel(this.modelo);
         this.vcrudcajero.listarButton.addActionListener(this);
         this.vcrudcajero.buscarButton.addActionListener(this);
+        this.vcrudcajero.eliminarButton.addActionListener(this);
+        this.vcrudcajero.agregarButton.addActionListener(this);
     }
 
     @Override
@@ -43,6 +45,9 @@ public class CtrGestionCajeros implements ActionListener {
         else if (e.getSource() == vcrudcajero.eliminarButton) {
             System.out.println("Boton eliminar presionado");
             ctreliminar();
+        }else if (e.getSource() == vcrudcajero.agregarButton) {
+            System.out.println("Boton agregar presionado");
+            ctragregar();
         }
     }
 
@@ -91,4 +96,27 @@ public class CtrGestionCajeros implements ActionListener {
                     "Usuario con id " + id + "eliminado exitosamente");
         }
     }
+    public void ctragregar(){
+        //String id = vcrudcajero.idtextField.getText();
+        String nombre = vcrudcajero.nombretextField.getText();
+        String apellido = vcrudcajero.apellidotextField.getText();
+        String direccion = vcrudcajero.direcciontextField.getText();
+        String correo = vcrudcajero.correotextField.getText();
+        String telefono = vcrudcajero.telefonotextField.getText();
+        String usuario = vcrudcajero.usuariotextField.getText();
+        String contrasena = vcrudcajero.contrasenatextField.getText();
+        cya.setNombre(nombre);
+        cya.setApellido(apellido);
+        cya.setDireccion(direccion);
+        cya.setCorreo(correo);
+        cya.setTelefono(telefono);
+        cya.setUsuario(usuario);
+        cya.setContrasena(contrasena);
+        if (ccrud.agregar(cya) == 1){
+            JOptionPane.showMessageDialog(null, "Usuario agregado con éxito.");
+        }else {
+            JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el usuario.");
+        }
+    }
+
 }
