@@ -46,4 +46,32 @@ public class CajeroCrud {
         return usuarios;
     }
 
+    public CajeroyAdministrador buscar(int id){
+        CajeroyAdministrador cya = new CajeroyAdministrador();
+        sql = "SELECT * FROM cajeros WHERE idCaj=" + id;
+        try {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            System.out.println("Ejecucion punto 1");
+            cya.setId(rs.getInt(1));
+            cya.setNombre(rs.getString(2));
+            cya.setApellido(rs.getString(3));
+            cya.setDireccion(rs.getString(4));
+            cya.setCorreo(rs.getString(5));
+            cya.setTelefono(rs.getString(6));
+            cya.setUsuario(rs.getString(7));
+            cya.setContrasena(rs.getString(8));
+            con.close();
+            ps.close();
+            rs.close();
+            System.out.println("Ejecucion punto 2");
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "ERROR en la conexión con la base de datos.");
+            e.printStackTrace();
+        }
+        return cya;
+    }
+
 }

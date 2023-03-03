@@ -3,12 +3,12 @@ package vistas;
 import javax.swing.*;
 
 public class VistaCrudCajeroAdmi extends JFrame{
-    private JTextField idtextField;
-    private JTextField nombretextField;
-    private JTextField apellidotextField;
-    private JTextField usuariotextField;
-    private JTextField contrasenatextField;
-    private JTextField correotextField;
+    public JTextField idtextField;
+    public JTextField nombretextField;
+    public JTextField apellidotextField;
+    public JTextField usuariotextField;
+    public JTextField contrasenatextField;
+    public JTextField correotextField;
     public JTable cajerostable;
     public JButton guardarButton;
     public JButton listarButton;

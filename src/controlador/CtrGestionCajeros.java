@@ -29,16 +29,20 @@ public class CtrGestionCajeros implements ActionListener {
         this.modelo.addColumn("Contraseña");
         this.vcrudcajero.cajerostable.setModel(this.modelo);
         this.vcrudcajero.listarButton.addActionListener(this);
+        this.vcrudcajero.buscarButton.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == vcrudcajero.listarButton){
-            listar();
+            ctrlistar();
+        }else if (e.getSource() == vcrudcajero.buscarButton) {
+            System.out.println("Boton buscar presionado");
+            ctrbuscar();
         }
     }
 
-    public void listar(){
+    public void ctrlistar(){
         List <CajeroyAdministrador> lista = ccrud.listar();
         Object[] objeto = new Object[8];
         modelo.setRowCount(0);
@@ -53,5 +57,22 @@ public class CtrGestionCajeros implements ActionListener {
             objeto[7] = lista.get(i).getContrasena();
             modelo.addRow(objeto);
         }
+    }
+
+    public void ctrbuscar(){
+        String id = vcrudcajero.idtextField.getText();
+        CajeroyAdministrador cya = ccrud.buscar(Integer.parseInt(id));
+        Object[] objeto = new Object[8];
+        modelo.setRowCount(0);
+        objeto[0] = cya.getId();
+        objeto[1] = cya.getNombre();
+        objeto[2] = cya.getApellido();
+        objeto[3] = cya.getDireccion();
+        objeto[4] = cya.getCorreo();
+        objeto[5] = cya.getTelefono();
+        objeto[6] = cya.getUsuario();
+        objeto[7] = cya.getContrasena();
+        modelo.addRow(objeto);
+        System.out.println("Ejecucion exitosa");
     }
 }
