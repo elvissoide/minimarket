@@ -5,7 +5,7 @@ public class Producto {
     private String nombre;
     private String descripcion;
     private int stock;
-    private float valorVenta;
+    private double valorVenta;
     private boolean iva;
     private String proveedor;
 
@@ -13,7 +13,7 @@ public class Producto {
     {}
 
     public Producto(int id, String nombre, String descripcion,
-                    int stock, float valorVenta, boolean iva, String proveedor)
+                    int stock, double valorVenta, boolean iva, String proveedor)
     {
         this.id = id;
         this.nombre = nombre;
@@ -56,11 +56,11 @@ public class Producto {
         this.stock = stock;
     }
 
-    public float getValorVenta() {
+    public double getValorVenta() {
         return valorVenta;
     }
 
-    public void setValorVenta(float valorVenta) {
+    public void setValorVenta(Double valorVenta) {
         this.valorVenta = valorVenta;
     }
 

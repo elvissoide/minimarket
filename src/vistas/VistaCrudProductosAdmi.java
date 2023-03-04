@@ -12,9 +12,9 @@ public class VistaCrudProductosAdmi extends JFrame {
     public JRadioButton NORadioButton;
     public JTable informacionProductos;
     public JButton listarButton_GP;
-    public JButton actualizarButton;
-    public JButton eliminarButton;
-    public JButton guardarButton;
+    public JButton actualizarButton_GP;
+    public JButton eliminarButton_GP;
+    public JButton agregarButton_GP;
     public JButton seleccionarProductos;
     public JPanel Tabla;
     public JTextField nombretextField_GP;
@@ -22,6 +22,7 @@ public class VistaCrudProductosAdmi extends JFrame {
     private JPanel Opciones;
     public JButton buscarButton_GP;
     private JPanel panelGestionProductos;
+    public JButton limpiarButton_GP;
     private ButtonGroup Iva_group;
 
     public VistaCrudProductosAdmi()
@@ -29,7 +30,7 @@ public class VistaCrudProductosAdmi extends JFrame {
         setContentPane(panelGestionProductos);
         pack();
         setTitle("Gestion de Productos");
-        setLocation(600,250);
+        setLocation(600,200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }
