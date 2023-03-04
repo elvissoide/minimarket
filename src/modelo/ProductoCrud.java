@@ -32,10 +32,10 @@ public class ProductoCrud {
                 prod.setId(rs.getInt(1));
                 prod.setNombre(rs.getString(2));
                 prod.setDescripcion(rs.getString(3));
-                prod.setStock(rs.getInt(    4));
+                prod.setStock(rs.getInt(4));
                 prod.setValorVenta((float) rs.getDouble(5));
-                prod.setProveedor(rs.getString(7));
                 prod.setIva(rs.getBoolean(6));
+                prod.setProveedor(rs.getString(7));
                 productos.add(prod);
             }
             con.close();
@@ -48,6 +48,34 @@ public class ProductoCrud {
             e.printStackTrace();
         }
         return productos;
+    }
+    public Producto buscar(int id)
+    {
+        Producto prod = new Producto();
+        sql = "SELECT * FROM Productos " +
+                "WHERE CodProd = " + id;
+        try
+        {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            rs.next();
+            prod.setId(rs.getInt(1));
+            prod.setNombre(rs.getString(2));
+            prod.setDescripcion(rs.getString(3));
+            prod.setStock(rs.getInt(    4));
+            prod.setValorVenta((float) rs.getDouble(5));
+            prod.setIva(rs.getBoolean(6));
+            prod.setProveedor(rs.getString(7));
+            con.close();
+            ps.close();
+            rs.close();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ERROR en la conexión con la base de datos.");
+            e.printStackTrace();
+        }
+        return prod;
     }
 
 }

@@ -3,11 +3,11 @@ package vistas;
 import javax.swing.*;
 
 public class VistaCrudProductosAdmi extends JFrame {
-    private JTextField idtextField_GP;
-    private JTextField descripciontextField_GP;
-    private JTextField stocktextField_GP;
-    private JTextField valventatextField_GP;
-    private JTextField proveedortextFiedl_GP;
+    public JTextField idtextField_GP;
+    public JTextField descripciontextField_GP;
+    public JTextField stocktextField_GP;
+    public JTextField valventatextField_GP;
+    public JTextField proveedortextFiedl_GP;
     public JRadioButton SIRadioButton;
     public JRadioButton NORadioButton;
     public JTable informacionProductos;
@@ -15,13 +15,14 @@ public class VistaCrudProductosAdmi extends JFrame {
     public JButton actualizarButton;
     public JButton eliminarButton;
     public JButton guardarButton;
-    public JButton seleccionarButton;
-    private JPanel Tabla;
-    private JTextField nombretextField_GP;
+    public JButton seleccionarProductos;
+    public JPanel Tabla;
+    public JTextField nombretextField_GP;
     private JPanel Productos;
     private JPanel Opciones;
-    private JButton buscarButton;
+    public JButton buscarButton_GP;
     private JPanel panelGestionProductos;
+    private ButtonGroup Iva_group;
 
     public VistaCrudProductosAdmi()
     {
