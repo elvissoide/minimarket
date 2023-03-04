@@ -92,7 +92,6 @@ public class CajeroCrud {
         try {
             con = conexion.crearConexion();
             ps = con.prepareStatement(sql);
-            System.out.println("PUNTO 1");
             ps.setString(1,cajero.getNombre());
             ps.setString(2,cajero.getApellido());
             ps.setString(3,cajero.getDireccion());
@@ -100,7 +99,6 @@ public class CajeroCrud {
             ps.setString(5,cajero.getTelefono());
             ps.setString(6,cajero.getUsuario());
             ps.setString(7,cajero.getContrasena());
-            System.out.println("PUNTO 1");
             ps.executeUpdate();
             con.close();
             ps.close();
@@ -111,5 +109,34 @@ public class CajeroCrud {
             return 0;
         }
     }
-
+    public int actualizar (CajeroyAdministrador cajero) {
+        System.out.println(cajero.getId());
+        System.out.println(cajero.getNombre());
+        System.out.println(cajero.getApellido());
+        sql = "UPDATE cajeros SET NomCaj=?, ApeCaj=?, DirCaj=?, CorCaj=?, TelCaj=?, UsuCaj=?, ConCaj=? WHERE IdCaj=?";
+        //sql = "UPDATE usuarios SET nombreusuarios=?, apellidousuarios=?, celularusuarios=?, correousuarios=? WHERE idusuarios=?";
+        int r = 0;
+        try {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            ps.setString(1,cajero.getNombre());
+            ps.setString(2,cajero.getApellido());
+            ps.setString(3,cajero.getDireccion());
+            ps.setString(4,cajero.getCorreo());
+            ps.setString(5,cajero.getTelefono());
+            ps.setString(6,cajero.getUsuario());
+            ps.setString(7,cajero.getContrasena());
+            ps.setString(8, String.valueOf(cajero.getId()));
+            r = ps.executeUpdate();
+            if (r == 1){
+                return 1;
+            } else{
+                return 0;
+            }
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "ERROR en la conexión con la base de datos.");
+            e.printStackTrace();
+            return r;
+        }
+    }
 }
