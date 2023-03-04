@@ -30,6 +30,8 @@ public class CtrGestionCajeros implements ActionListener {
         this.vcrudcajero.cajerostable.setModel(this.modelo);
         this.vcrudcajero.listarButton.addActionListener(this);
         this.vcrudcajero.buscarButton.addActionListener(this);
+        this.vcrudcajero.eliminarButton.addActionListener(this);
+        this.vcrudcajero.agregarButton.addActionListener(this);
     }
 
     @Override
@@ -39,6 +41,13 @@ public class CtrGestionCajeros implements ActionListener {
         }else if (e.getSource() == vcrudcajero.buscarButton) {
             System.out.println("Boton buscar presionado");
             ctrbuscar();
+        }
+        else if (e.getSource() == vcrudcajero.eliminarButton) {
+            System.out.println("Boton eliminar presionado");
+            ctreliminar();
+        }else if (e.getSource() == vcrudcajero.agregarButton) {
+            System.out.println("Boton agregar presionado");
+            ctragregar();
         }
     }
 
@@ -75,4 +84,39 @@ public class CtrGestionCajeros implements ActionListener {
         modelo.addRow(objeto);
         System.out.println("Ejecucion exitosa");
     }
+    public void ctreliminar(){
+        int fila = vcrudcajero.cajerostable.getSelectedRow();
+        if (fila == -1){
+            JOptionPane.showMessageDialog(null,
+                    "Por favor, seleccione una fila.");
+        } else {
+            int id = (int) vcrudcajero.cajerostable.getValueAt(fila,0);
+            ccrud.eliminar(id);
+            JOptionPane.showMessageDialog(null,
+                    "Usuario con id " + id + "eliminado exitosamente");
+        }
+    }
+    public void ctragregar(){
+        //String id = vcrudcajero.idtextField.getText();
+        String nombre = vcrudcajero.nombretextField.getText();
+        String apellido = vcrudcajero.apellidotextField.getText();
+        String direccion = vcrudcajero.direcciontextField.getText();
+        String correo = vcrudcajero.correotextField.getText();
+        String telefono = vcrudcajero.telefonotextField.getText();
+        String usuario = vcrudcajero.usuariotextField.getText();
+        String contrasena = vcrudcajero.contrasenatextField.getText();
+        cya.setNombre(nombre);
+        cya.setApellido(apellido);
+        cya.setDireccion(direccion);
+        cya.setCorreo(correo);
+        cya.setTelefono(telefono);
+        cya.setUsuario(usuario);
+        cya.setContrasena(contrasena);
+        if (ccrud.agregar(cya) == 1){
+            JOptionPane.showMessageDialog(null, "Usuario agregado con éxito.");
+        }else {
+            JOptionPane.showMessageDialog(null, "Error, no se pudo agregar el usuario.");
+        }
+    }
+
 }

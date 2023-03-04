@@ -17,7 +17,7 @@ public class Principal {
         new CtrGestionCajeros(vcc);
         vcc.setVisible(true);
          */
-        /*
+      /*
         VistaLogin vl = new VistaLogin();
         new CtrLogin(vl);
         vl.setVisible(true);

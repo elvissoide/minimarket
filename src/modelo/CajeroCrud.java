@@ -73,5 +73,43 @@ public class CajeroCrud {
         }
         return cya;
     }
+    public void eliminar (int id){
+        sql = "DELETE FROM cajeros WHERE idCaj=" + id;
+        try {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            ps.executeUpdate();
+            con.close();
+            ps.close();
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "ERROR en la conexion con la base de datos");
+            e.printStackTrace();
+        }
+    }
+    public int agregar (CajeroyAdministrador cajero) {
+        sql = "INSERT INTO cajeros (NomCaj, ApeCaj, DirCaj, CorCaj, TelCaj, UsuCaj, ConCaj)" +
+                "VALUES (?,?,?,?,?,?,?)";
+        try {
+            con = conexion.crearConexion();
+            ps = con.prepareStatement(sql);
+            System.out.println("PUNTO 1");
+            ps.setString(1,cajero.getNombre());
+            ps.setString(2,cajero.getApellido());
+            ps.setString(3,cajero.getDireccion());
+            ps.setString(4,cajero.getCorreo());
+            ps.setString(5,cajero.getTelefono());
+            ps.setString(6,cajero.getUsuario());
+            ps.setString(7,cajero.getContrasena());
+            System.out.println("PUNTO 1");
+            ps.executeUpdate();
+            con.close();
+            ps.close();
+            return 1;
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null, "ERROR en la conexión con la base de datos.");
+            e.printStackTrace();
+            return 0;
+        }
+    }
 
 }

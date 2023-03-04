@@ -10,15 +10,15 @@ public class VistaCrudCajeroAdmi extends JFrame{
     public JTextField contrasenatextField;
     public JTextField correotextField;
     public JTable cajerostable;
-    public JButton guardarButton;
+    public JButton agregarButton;
     public JButton listarButton;
     public JButton seleccionarButton;
     public JButton actualizarButton;
     public JButton eliminarButton;
     public JButton buscarButton;
     private JPanel panelGestionCajeros;
-    private JTextField direcciontextField;
-    private JTextField telefonotextField;
+    public JTextField direcciontextField;
+    public JTextField telefonotextField;
 
     public VistaCrudCajeroAdmi(){
         setContentPane(panelGestionCajeros);
