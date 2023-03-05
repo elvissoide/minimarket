@@ -23,7 +23,7 @@ public class VistasVentas
         sql = "SELECT cj.IdCaj, cj.ApeCaj ,cj.NomCaj, sum(TotFact) as total\n" +
                 "FROM cajeros as cj, cabecerasfacturas as cf\n" +
                 "WHERE cj.IdCaj = cf.IdCajFact\n" +
-                "GROUP BY cj.IdCaj, cf.TotFact;";
+                "GROUP BY cj.IdCaj";
         try {
 
             con = conexion.crearConexion();
