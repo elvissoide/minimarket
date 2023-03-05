@@ -41,7 +41,6 @@ public class ProductoCrud {
             con.close();
             ps.close();
             rs.close();
-            System.out.println(productos.toString());
             System.out.println("Conexion exitosa con la base de datos");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"ERROR en la conexión con la base de datos");

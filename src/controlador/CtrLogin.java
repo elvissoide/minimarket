@@ -20,7 +20,7 @@ public class CtrLogin implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if (e.getSource() == vLogin.ingresarButton){
-            //CODIGO PARA VALIDAR CAJERO O ADMINISTRADOR
+            //CODIGO PARA VALIDAR SI ES CAJERO O ADMINISTRADOR
 
         }
     }
