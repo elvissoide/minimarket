@@ -47,29 +47,41 @@ public class CtrFacturacion implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e){
+
+
         if (e.getSource() == vistafc.buscarButton){
             System.out.println("Boton buscar presionado");
             ctrlistarProductosRegistrados();
-        } else if (e.getSource() == vistafc.seleccionarButton) { //Ingresar producto comprado
+
+
+        } else if (e.getSource() == vistafc.seleccionarButton) {
             System.out.println("Boton seleccionar presionado");
             int fila = vistafc.registrosProductostable.getSelectedRow();
             vistafc.subtotaltextField.setEnabled(false);
             vistafc.ivatextField.setEnabled(false);
             vistafc.totaltextField.setEnabled(false);
+
+
             if (fila == -1 || vistafc.cantidadProductotextField.getText().equals("")) {
                 JOptionPane.showMessageDialog(null,
                         "Debe seleccionar una fila e ingresar una cantidad deseada");
+
             } else {
                 int idProducto = (int) vistafc.registrosProductostable.getValueAt(fila,0);
                 int cantidadProducto = Integer.parseInt(vistafc.cantidadProductotextField.getText());
                 ctrlistarProductosComprados(prfact.agregarProductoComprado(idProducto, cantidadProducto));
                 ctrcalcularValores(fila);
             }
-        } else if (e.getSource() == vistafc.imprimirFacturabutton) { //Imprimir factura
+
+        } else if (e.getSource() == vistafc.imprimirFacturabutton) {
+            JOptionPane.showMessageDialog(null,
+                    "Imprimiendo Factura...");
             System.out.println("Boton imprimir facturado presionado");
             ctractualizarRegistros();
         }
     }
+
+
     public void ctrlistarProductosRegistrados(){
         String nombre = vistafc.nombreProductotextField.getText();
         List<Producto> lista = prfact.listarProductosEncontrados(nombre);
