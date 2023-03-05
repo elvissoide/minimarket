@@ -1,4 +1,12 @@
 package controlador;
+import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfPCell;
+import modelo.Factura;
+// Importar librerias necesarias para escribir el PDF
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import modelo.Producto;
 import modelo.ProductoFactura;
@@ -10,6 +18,10 @@ import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -174,5 +186,90 @@ public class CtrFacturacion implements ActionListener {
             prfact.insertarRegistrosDetalles(numeroFactura, idp, cantidad, precio, total);
         }
 
+    }
+    public void ctrGenerarDocumento() {
+        // Creacion del documento para la creacion del PDF
+        Document documento = new Document();
+
+        try
+        {
+            //Formaetar el PDF
+            // Creacer una Imagen desde la propia liberia para exportar PDF's
+            Image header = Image.getInstance("src/img/buho.png");
+            // Tamaño
+            header.scaleAbsolute(200, 150);
+            // Alinacion de la imagen
+            header.setAlignment(Chunk.ALIGN_CENTER);
+
+            // Objeto para parrafos propio de la liberia
+            Paragraph parrafos = new Paragraph();
+            Paragraph datos = new Paragraph();
+            // Alineacion
+            parrafos.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafos.add("El Buho \n" +
+                    "MINIMARKET\n\n");
+            // Fuente
+            parrafos.setFont(FontFactory.getFont("Tahoma", 20, Font.BOLD, BaseColor.BLACK));
+
+            // Ruta donde se guardara el documento
+            String ruta = System.getProperty("user.home");
+            // Ruta absoulta
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Downloads/reporte_prueba.pdf" ));
+            documento.open();
+            // Creacion de las tablas para gurdar los datos
+            PdfPTable tabla = new PdfPTable(4);
+            PdfPTable tablaPago = new PdfPTable(3);
+            // Nombre de las columnas
+            tabla.addCell("Cantidad");
+            tabla.addCell("Descripcion");
+            tabla.addCell("Precio Unitario");
+            tabla.addCell("Valor Total");
+            tablaPago.addCell("Subtotal");
+            tablaPago.addCell("IVA");
+            tablaPago.addCell("Total");
+
+            // Contador de las columnas de la tabla donde se encuentran los registros
+            // de las compras.
+            int filas = modeloFactura.getRowCount();
+            for (int i = 0; i < filas; i++)
+            {
+                String cantidad = String.valueOf(vistafc.productosAdquiridostable.getValueAt(i, 2));
+                String detalle = String.valueOf(vistafc.productosAdquiridostable.getValueAt(i, 1));
+                Double precioUnit = Double.parseDouble(String.valueOf(vistafc.productosAdquiridostable.getValueAt(i, 3)));
+                Double total = Double.parseDouble(String.valueOf(vistafc.productosAdquiridostable.getValueAt(i, 4)));
+                // Añadir los datos a las celdas correspondientes
+                tabla.addCell(String.valueOf(cantidad));
+                tabla.addCell(detalle);
+                tabla.addCell(String.valueOf(precioUnit));
+                tabla.addCell(String.valueOf(total));
+            }
+            // Añadir los datos a las celdas correspondientes
+            // Obtiene los datos desde los componentes de la vista
+            datos.setAlignment(Paragraph.ALIGN_LEFT);
+            datos.add("Sr: " + vistafc.nombretextField.getText() + "\n");
+            datos.add("R.U.C/C.I: " + vistafc.ciructextFiel.getText() + "\n");
+            datos.add("Fecha: " + vistafc.fechatextField.getText() + "\n\n");
+            datos.setFont(FontFactory.getFont("Tahoma", 18, Font.NORMAL, BaseColor.DARK_GRAY));
+
+            tablaPago.addCell(vistafc.subtotaltextField.getText());
+            tablaPago.addCell(vistafc.ivatextField.getText());
+            tablaPago.addCell(vistafc.totaltextField.getText());
+            // Agregar todos los objetos al documento
+            documento.add(header);
+            documento.add(parrafos);
+            documento.add(datos);
+            documento.add(tabla);
+            documento.add(tablaPago);
+            documento.close();
+
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
