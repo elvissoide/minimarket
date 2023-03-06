@@ -16,6 +16,7 @@ public class VistaRevisionVentasAdmi extends JFrame{
     public JButton listar_ventas;
     public JButton seleccionarButton;
     public JButton limpiarButton;
+    public JButton regresarButton;
 
     public VistaRevisionVentasAdmi()
     {

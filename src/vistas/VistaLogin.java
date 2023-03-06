@@ -1,15 +1,13 @@
 package vistas;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class VistaLogin extends JFrame{
     public JPanel panelLogin;
-    public JTextField textField2;
+    public JTextField usuariotextField;
     public JButton ingresarButton;
-    public JComboBox cajeroAdminComboBox;
+    public JComboBox rolComboBox;
     public JLabel imagenBuho;
-    public JPasswordField passwordField1;
+    public JPasswordField contrasenaField;
 
     public VistaLogin() {
         setContentPane(panelLogin);

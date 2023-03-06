@@ -19,6 +19,7 @@ public class VistaCrudCajeroAdmi extends JFrame{
     private JPanel panelGestionCajeros;
     public JTextField direcciontextField;
     public JTextField telefonotextField;
+    public JButton regresarButton;
 
     public VistaCrudCajeroAdmi(){
         setContentPane(panelGestionCajeros);

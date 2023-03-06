@@ -23,6 +23,7 @@ public class VistaCrudProductosAdmi extends JFrame {
     public JButton buscarButton_GP;
     private JPanel panelGestionProductos;
     public JButton limpiarButton_GP;
+    public JButton regresarButton;
     private ButtonGroup Iva_group;
 
     public VistaCrudProductosAdmi()

@@ -18,6 +18,8 @@ public class VistaFacturaCajero extends JFrame{
     private JPanel panelFacturacion;
     public JButton seleccionarButton;
     public JTextField cantidadProductotextField;
+    public JButton regresarButton;
+    public JButton nuevaFacturaButton;
 
     public VistaFacturaCajero() {
         setContentPane(panelFacturacion);
