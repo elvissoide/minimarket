@@ -15,7 +15,7 @@ public class DatosCompartidos {
     }
 
     public String getId() {
-        return id;
+        return  id;
     }
 
     public void setId(String id) {
