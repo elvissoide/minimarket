@@ -1,13 +1,16 @@
 package controlador;
 
+import modelo.DatosCompartidos;
 import modelo.Factura;
 import modelo.VistasVentas;
+import vistas.VistaPrincipalAdmi;
 import vistas.VistaRevisionVentasAdmi;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.DatabaseMetaData;
 import java.util.List;
 
 
@@ -18,9 +21,11 @@ public class CtrVistaVentas implements ActionListener
     VistaRevisionVentasAdmi vvistasventas;
     DefaultTableModel modelo;
     DefaultTableModel modeloDetalle;
+    DatosCompartidos dc;
 
-    public CtrVistaVentas(VistaRevisionVentasAdmi vrv)
+    public CtrVistaVentas(VistaRevisionVentasAdmi vrv, DatosCompartidos dc)
     {
+        this.dc = dc;
         this.vvistasventas = vrv;
         this.modelo = new DefaultTableModel();
         this.modelo.addColumn("ID");
@@ -43,6 +48,7 @@ public class CtrVistaVentas implements ActionListener
         this.vvistasventas.seleccionarButton.addActionListener(this);
         this.vvistasventas.limpiarButton.addActionListener(this);
         this.vvistasventas.buscar_ventas.addActionListener(this);
+        this.vvistasventas.regresarButton.addActionListener(this);
     }
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -56,6 +62,11 @@ public class CtrVistaVentas implements ActionListener
             limpiar();
         else if (e.getSource() == vvistasventas.buscar_ventas)
             buscar_Cajero();
+        else if (e.getSource() == vvistasventas.regresarButton) {
+            VistaPrincipalAdmi vpa = new VistaPrincipalAdmi(dc);
+            vpa.setVisible(true);
+            vvistasventas.dispose();
+        }
     }
     public void listar_sencilla()
     {

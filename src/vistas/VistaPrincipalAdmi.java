@@ -25,5 +25,48 @@ public class VistaPrincipalAdmi extends JFrame{
         setTitle("Rol administrador");
         setLocation(600,250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.dc = dc;
+        nombreAdministrador.setText(dc.getNombre());
+        correoAdministrador.setText(dc.getCorreo());
+        System.out.println(dc.getNombre());
+        System.out.println(dc.getCorreo());
+        ingresarProductosButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaCrudProductosAdmi vistapp = new VistaCrudProductosAdmi();
+                new CtrProductosAdmin(vistapp, dc);
+                vistapp.setVisible(true);
+                dispose();
+            }
+        });
+        revisarVentasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaRevisionVentasAdmi vistav = new VistaRevisionVentasAdmi();
+                new CtrVistaVentas(vistav,dc);
+                vistav.setVisible(true);
+                dispose();
+            }
+        });
+        agregarCajeroButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VistaCrudCajeroAdmi vistacc = new VistaCrudCajeroAdmi();
+                new CtrGestionCajeros(vistacc, dc);
+                vistacc.setVisible(true);
+                dispose();
+            }
+        });
+        regresarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DatosCompartidos dc = new DatosCompartidos();
+                VistaLogin vl = new VistaLogin();
+                new CtrLogin(vl, dc);
+                vl.setVisible(true);
+                dispose();
+            }
+        });
     }
 }

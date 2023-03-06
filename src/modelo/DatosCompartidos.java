@@ -2,7 +2,7 @@ package modelo;
 
 public class DatosCompartidos {
     private int rol;
-    private int id;
+    private String id = "";
     private String nombre = "";
     private String correo = "";
 
@@ -14,11 +14,11 @@ public class DatosCompartidos {
         this.rol = rol;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

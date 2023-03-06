@@ -1,34 +1,18 @@
 import controlador.CtrGestionCajeros;
 import controlador.CtrLogin;
 import controlador.CtrProductosAdmin;
-import controlador.CtrVistaVentas;
-import modelo.VistasVentas;
+import modelo.DatosCompartidos;
 import vistas.VistaCrudCajeroAdmi;
 import vistas.VistaCrudProductosAdmi;
+import vistas.VistaFacturaCajero;
 import vistas.VistaLogin;
-import vistas.VistaRevisionVentasAdmi;
+import controlador.*;
 
 public class Principal {
     public static void main(String[] args) {
-
-        VistaRevisionVentasAdmi vv = new VistaRevisionVentasAdmi();
-        new CtrVistaVentas(vv);
-        vv.setVisible(true);
-
-        /*
-        VistaCrudProductosAdmi vcp = new VistaCrudProductosAdmi();
-        new CtrProductosAdmin(vcp);
-        vcp.setVisible(true);
-         */
-        /*
-        VistaCrudCajeroAdmi vcc = new VistaCrudCajeroAdmi();
-        new CtrGestionCajeros(vcc);
-        vcc.setVisible(true);
-         */
-      /*
+        DatosCompartidos dc = new DatosCompartidos();
         VistaLogin vl = new VistaLogin();
-        new CtrLogin(vl);
+        new CtrLogin(vl, dc);
         vl.setVisible(true);
-         */
     }
 }

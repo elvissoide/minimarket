@@ -14,7 +14,8 @@ public class ValidacionUsuarios {
     public String[] validarAdministrador (String administrador){
         String[] credenciales = new String[4];
         administrador = "\'" + administrador + "\'";
-        sql = "SELECT UsuAdm, ConAdm, CONCAT(NomAdm,' ',ApeAdm), CorAdm FROM administradores WHERE UsuAdm LIKE " + administrador;
+        sql = "SELECT UsuAdm, ConAdm, CONCAT(NomAdm,' ',ApeAdm), CorAdm FROM administradores WHERE UsuAdm LIKE "
+                + administrador;
         try {
             con = conexion.crearConexion();
             ps = con.prepareStatement(sql);
@@ -43,21 +44,23 @@ public class ValidacionUsuarios {
         return credenciales;
     }
     public String[] validarCajero (String cajero){
-        String[] credenciales = new String[2];
+        String[] credenciales = new String[3];
         cajero = "\'" + cajero + "\'";
-        sql = "SELECT UsuCaj, ConCaj FROM cajeros WHERE UsuAdm LIKE " + cajero;
+        sql = "SELECT UsuCaj, ConCaj, IdCaj FROM cajeros WHERE UsuCaj LIKE " + cajero;
         try {
             con = conexion.crearConexion();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            rs.next();
+            //rs.next();
 
             if (rs.next()){
                 credenciales[0] = rs.getString(1);
                 credenciales[1] = rs.getString(2);
+                credenciales[2] = rs.getString(3);
             } else {
                 credenciales[0] = null;
                 credenciales[1] = null;
+                credenciales[2] = null;
             }
 
             con.close();

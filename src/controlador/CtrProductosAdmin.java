@@ -2,9 +2,12 @@ package controlador;
 
 
 
+import modelo.DatosCompartidos;
 import modelo.Producto;
 import modelo.ProductoCrud;
 import vistas.VistaCrudProductosAdmi;
+import vistas.VistaLogin;
+import vistas.VistaPrincipalAdmi;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -19,9 +22,10 @@ public class CtrProductosAdmin implements ActionListener
     VistaCrudProductosAdmi vcrudproductos;
     DefaultTableModel modelo;
     Producto prod = new Producto();
-
-    public CtrProductosAdmin(VistaCrudProductosAdmi vcp)
+    DatosCompartidos dc;
+    public CtrProductosAdmin(VistaCrudProductosAdmi vcp, DatosCompartidos dc)
     {
+        this.dc = dc;
         this.vcrudproductos = vcp;
         this.modelo = new DefaultTableModel();
         this.modelo.addColumn("ID");
@@ -39,6 +43,7 @@ public class CtrProductosAdmin implements ActionListener
         this.vcrudproductos.actualizarButton_GP.addActionListener(this);
         this.vcrudproductos.eliminarButton_GP.addActionListener(this);
         this.vcrudproductos.limpiarButton_GP.addActionListener(this);
+        this.vcrudproductos.regresarButton.addActionListener(this);
     }
 
     @Override
@@ -60,6 +65,12 @@ public class CtrProductosAdmin implements ActionListener
         }
         else if (e.getSource() == vcrudproductos.limpiarButton_GP)
             limpiar();
+        else if (e.getSource() == vcrudproductos.regresarButton) {
+            //DatosCompartidos dc = new DatosCompartidos();
+            VistaPrincipalAdmi vpa = new VistaPrincipalAdmi(dc);
+            vpa.setVisible(true);
+            vcrudproductos.dispose();
+        }
     }
 
     public void listar()

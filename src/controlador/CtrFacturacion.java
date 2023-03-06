@@ -8,9 +8,11 @@ import modelo.Factura;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import modelo.DatosCompartidos;
 import modelo.Producto;
 import modelo.ProductoFactura;
 import vistas.VistaFacturaCajero;
+import vistas.VistaLogin;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -31,9 +33,11 @@ public class CtrFacturacion implements ActionListener {
     DefaultTableModel modeloFactura;
     DefaultTableModel modeloProductos;
     ProductoFactura prfact = new ProductoFactura();
+    DatosCompartidos dc;
 
-    public CtrFacturacion(VistaFacturaCajero vfc){
+    public CtrFacturacion(VistaFacturaCajero vfc, DatosCompartidos dc){
         this.vistafc = vfc;
+        this.dc = dc;
         //Tabla de facturacion
         this.modeloFactura = new DefaultTableModel();
         this.modeloFactura.addColumn("Codigo");
@@ -55,6 +59,8 @@ public class CtrFacturacion implements ActionListener {
         this.vistafc.buscarButton.addActionListener(this);
         this.vistafc.seleccionarButton.addActionListener(this);
         this.vistafc.imprimirFacturabutton.addActionListener(this);
+        this.vistafc.regresarButton.addActionListener(this);
+        this.vistafc.nuevaFacturaButton.addActionListener(this);
     }
 
     @Override
@@ -72,7 +78,12 @@ public class CtrFacturacion implements ActionListener {
             vistafc.subtotaltextField.setEnabled(false);
             vistafc.ivatextField.setEnabled(false);
             vistafc.totaltextField.setEnabled(false);
-
+            vistafc.idcajerotextField.setEnabled(false);
+            //Borrar esta parte
+            vistafc.ciructextFiel.setText("1750734129");
+            vistafc.nombretextField.setText("Elvis Guanoluisa");
+            //vistafc.idcajerotextField.setText("1");
+            vistafc.idcajerotextField.setText(dc.getId());
 
             if (fila == -1 || vistafc.cantidadProductotextField.getText().equals("")) {
                 JOptionPane.showMessageDialog(null,
@@ -90,6 +101,19 @@ public class CtrFacturacion implements ActionListener {
                     "Imprimiendo Factura...");
             System.out.println("Boton imprimir facturado presionado");
             ctractualizarRegistros();
+        } else if (e.getSource() == vistafc.regresarButton) {
+            DatosCompartidos dc = new DatosCompartidos();
+            VistaLogin vl = new VistaLogin();
+            new CtrLogin(vl, dc);
+            vl.setVisible(true);
+            vistafc.dispose();
+        } else if (e.getSource() == vistafc.nuevaFacturaButton) {
+            System.out.println("Limpieza de registros");
+            modeloFactura.setRowCount(0);
+            vistafc.fechatextField.setText("");
+            vistafc.ciructextFiel.setText("");
+            vistafc.nombretextField.setText("");
+
         }
     }
 
@@ -156,9 +180,6 @@ public class CtrFacturacion implements ActionListener {
     }
     public void ctractualizarRegistros(){
         // BORRAR ESTA LINEA
-        vistafc.ciructextFiel.setText("1750734129");
-        vistafc.nombretextField.setText("Elvis Guanoluisa");
-        vistafc.idcajerotextField.setText("1");
 
         Object[] valores = new Object[6];
         valores[0] = vistafc.idcajerotextField.getText();

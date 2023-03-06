@@ -2,7 +2,9 @@ package controlador;
 
 import modelo.CajeroCrud;
 import modelo.CajeroyAdministrador;
+import modelo.DatosCompartidos;
 import vistas.VistaCrudCajeroAdmi;
+import vistas.VistaPrincipalAdmi;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,8 +17,9 @@ public class CtrGestionCajeros implements ActionListener {
     VistaCrudCajeroAdmi vcrudcajero; //Vista
     DefaultTableModel modelo;//Modelo para JTable
     CajeroyAdministrador cya = new CajeroyAdministrador();
-
-    public CtrGestionCajeros(VistaCrudCajeroAdmi vcc){
+    DatosCompartidos dc;
+    public CtrGestionCajeros(VistaCrudCajeroAdmi vcc, DatosCompartidos dc){
+        this.dc = dc;
         this.vcrudcajero = vcc;
         this.modelo = new DefaultTableModel();
         this.modelo.addColumn("ID");
@@ -34,6 +37,7 @@ public class CtrGestionCajeros implements ActionListener {
         this.vcrudcajero.agregarButton.addActionListener(this);
         this.vcrudcajero.actualizarButton.addActionListener(this);
         this.vcrudcajero.seleccionarButton.addActionListener(this);
+        this.vcrudcajero.regresarButton.addActionListener(this);
     }
 
     @Override
@@ -56,6 +60,10 @@ public class CtrGestionCajeros implements ActionListener {
         } else if (e.getSource() == vcrudcajero.actualizarButton) {
             System.out.println("Boton actualizar presionado");
             ctractualizar();
+        } else if (e.getSource() == vcrudcajero.regresarButton){
+            VistaPrincipalAdmi vpa = new VistaPrincipalAdmi(dc);
+            vpa.setVisible(true);
+            vcrudcajero.dispose();
         }
     }
 
