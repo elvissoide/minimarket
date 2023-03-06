@@ -7,6 +7,8 @@
 + Patiño Franklin   
 + Shiao Roberto
 
+## Link Video
+
 ## VISTAS
 
 ### Librerias para que funcione correctamente el programa 
