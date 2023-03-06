@@ -10,9 +10,9 @@ CREATE TABLE productos(
 	NomProd VARCHAR(45) NOT NULL,
 	DesProd VARCHAR(80) NOT NULL,
 	StoProd INT NOT NULL,
-    ValVentProd DECIMAL(5,2) NOT NULL,
+    ValVentProd DECIMAL(10,2) NOT NULL,
     IvaProd TINYINT NOT NULL,
-    RucProvProd VARCHAR(15) NOT NULL
+    RucProvProd VARCHAR(30) NOT NULL
 ) AUTO_INCREMENT = 1;
 INSERT INTO productos (NomProd, DesProd, StoProd, ValVentProd, IvaProd, RucProvProd)
 VALUES
@@ -29,7 +29,7 @@ VALUES
 -- SELECT * FROM productos WHERE NomProd LIKE '%detergente%';
 -- SELECT CodProd, NomProd, DesProd, StoProd, ValVentProd FROM productos;
 -- SELECT CodProd, DesProd, ValVentProd FROM productos WHERE CodProd = 1;
-
+-- SELECT MAX(CodProd) FROM productos;
 
 CREATE TABLE cajeros(
 	IdCaj INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -43,11 +43,13 @@ CREATE TABLE cajeros(
 ) AUTO_INCREMENT=1;
 INSERT INTO cajeros (NomCaj, ApeCaj, DirCaj, CorCaj, TelCaj, UsuCaj, ConCaj)
 VALUES
-('Pablo','Arroyo','Quito, Miravalle 1, Carlos Dousdebes','pablo.arroyo@market.com','0998151451','pablo1451','pa15mrkt'),
-('Maria','Fernandez','Quito, Centro Historico','maria.fernandez@market.com','0987127781','maria7781','mar18mrkt'),
-('Domenica','Lamar','Quito, Cumbaya, parque central','domenica.lamar@market.com','0992344242','dome4242','dom24mrkt'),
-('Michael','Ramirez','Quito, La Tola','michael.ramirez@market.com','0983451562','michael1562','mic26mrkt');
+('Pablo','Arroyo','Quito, Miravalle 1, Carlos Dousdebes','pablo.arroyo@market.com','0998151451','cj1','cj1'),
+('Maria','Fernandez','Quito, Centro Historico','maria.fernandez@market.com','0987127781','cj2','cj2'),
+('Domenica','Lamar','Quito, Cumbaya, parque central','domenica.lamar@market.com','0992344242','cj3','cj3'),
+('Michael','Ramirez','Quito, La Tola','michael.ramirez@market.com','0983451562','cj4','cj4');
 -- SELECT * FROM cajeros;
+-- SELECT UsuCaj, ConCaj, CONCAT(NomCaj,' ',ApeCaj), CorCaj FROM cajeros WHERE UsuCaj LIKE 'cj1';
+-- SELECT UsuCaj, ConCaj, IdCaj FROM cajeros WHERE UsuCaj LIKE 'cj1';
 
 -- Creacion de tabla cabeceras de facturas
 CREATE TABLE cabecerasFacturas(
@@ -55,9 +57,9 @@ CREATE TABLE cabecerasFacturas(
     IdCajFact VARCHAR(10) NOT NULL REFERENCES cajeros(IdCaj),
 	NomCliFact VARCHAR(60) NOT NULL,
 	FecEmiFact DATE NOT NULL,
-	SubFact DECIMAL(6,2),
-    IvaFact DECIMAL(6,2),
-    TotFact DECIMAL(6,2) 
+	SubFact DECIMAL(10,2),
+    IvaFact DECIMAL(10,2),
+    TotFact DECIMAL(10,2) 
 );
 INSERT INTO cabecerasFacturas (IdCajFact, NomCliFact, FecEmiFact, SubFact, IvaFact, TotFact)
 VALUES
@@ -66,6 +68,7 @@ VALUES
 (1,'Ronald Guaman','2020-02-10',NULL,NULL,NULL),
 (2,'Cristian Cevallos','2020-03-15',NULL,NULL,NULL);
 -- SELECT * FROM cabecerasFacturas;
+-- SELECT MAX(NumFact) FROM cabecerasFacturas;
 
 -- Creacion de detalles de factura
 CREATE TABLE detallesFacturas(
@@ -73,8 +76,8 @@ CREATE TABLE detallesFacturas(
 	NumFactDet INT NOT NULL REFERENCES cabecerasFacturas(NumFact),
 	CodProdDet INT NOT NULL REFERENCES productos(CodProd),
 	CanDet INT NOT NULL,
-    ValVenDet DECIMAL(5,2) NOT NULL REFERENCES productos(ValVentProd),
-    TotDet DECIMAL(6,2) 
+    ValVenDet DECIMAL(10,2) NOT NULL REFERENCES productos(ValVentProd),
+    TotDet DECIMAL(10,2) 
 );
 INSERT INTO detallesFacturas (NumFactDet, CodProdDet, CanDet, ValVenDet, TotDet)
 VALUES
@@ -96,6 +99,8 @@ CREATE TABLE administradores(
 );
 INSERT INTO administradores (NomAdm, ApeAdm, DirAdm, CorAdm, TelAdm, UsuAdm, ConAdm)
 VALUES
-('Jesus','Colcha','Quito, Tumbaco','jesus.colcha@market.com','0992387466','jesus7466','je66mrkt'),
-('Cristhian','Gomez','Quito, Pifo','cristhian.gomez@market.com','0985353412','cris3411','cr21mrkt');
+('Jesus','Colcha','Quito, Tumbaco','jesus.colcha@market.com','0992387466','admin1','admin1'),
+('Cristhian','Gomez','Quito, Pifo','cristhian.gomez@market.com','0985353412','admin2','admin2');
+-- USE minimarketearf
 -- SELECT * FROM administradores;
+-- SELECT UsuAdm, ConAdm FROM administradores WHERE UsuAdm LIKE 'admin1';
